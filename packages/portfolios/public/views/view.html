@@ -33,10 +33,13 @@
       <td data-title="'Company Name'" sortable="'CompanyName'">
         {{ stock.CompanyName }}
       </td>
-      <td data-title="'the street'" sortable="'TheStreetRating'">
+      <td data-title="'the street'" sortable="'TheStreetRating'" ng-class="
+      {'A+':'cell_one','A':'cell_one','A-':'cell_two','B+':'cell_two','B':'cell_two','C-':'cell_four','D+':'cell_four','D':'cell_four','D-':'cell_four','E':'cell_five' }[stock.TheStreetRating]
+      ">
         {{ stock.TheStreetRating }}
       </td>
-      <td data-title="'rating'" sortable="'MeanRecommendation'">
+      <td data-title="'rating'" sortable="'MeanRecommendation'"
+      ng-class="{cell_one: stock.MeanRecommendation <= 1.6 , cell_two: stock.MeanRecommendation > 1.6 && stock.MeanRecommendation <= 2.7, cell_four: stock.MeanRecommendation > 2.7 } ">
         {{ stock.MeanRecommendation }}
       </td>
       <td data-title="'# Brk'" sortable="'NoOfBrokers'">
@@ -46,16 +49,23 @@
       <td data-title="'S&P Rating'" sortable="'SPRating'">
       </td>
     -->
-      <td data-title="'Zacks'" sortable="'ZacksRating'">
+      <td data-title="'Zacks'" sortable="'ZacksRating'" ng-class="
+      {1:'cell_one',2:'cell_two',4:'cell_four',5:'cell_five' }[stock.ZacksRating]
+      ">
         {{ stock.ZacksRating }}
       </td>
-      <td data-title="'Stock Selector'" sortable="'StockSelectorRating'">
+      <td data-title="'Stock Selector'" sortable="'StockSelectorRating'"
+      ng-class="{cell_one: stock.StockSelectorRating < 1000 && stock.StockSelectorRating != null, cell_two: stock.StockSelectorRating >= 1000 && stock.StockSelectorRating < 4500, cell_five: stock.StockSelectorRating >= 4500 && stock.StockSelectorRating < 6500, cell_six: stock.StockSelectorRating > 6500 } ">
         {{ stock.StockSelectorRating }}
       </td>
-      <td data-title="'M Rating'" sortable="'MorningstarRating'">
+      <td data-title="'M Rating'" sortable="'MorningstarRating'" ng-class="
+      {5:'cell_one',4:'cell_two',2:'cell_four',1:'cell_five' }[stock.MorningstarRating]
+      ">
         {{ stock.MorningstarRating }}
       </td>
-      <td data-title="'M Risk'" sortable="'MorningstarUncertainty'">
+      <td data-title="'M Risk'" sortable="'MorningstarUncertainty'" ng-class="
+      {'Low':'cell_one','Medium':'cell_two','Very High':'cell_four' }[stock.MorningstarUncertainty]
+      ">
         {{ stock.MorningstarUncertainty }}
       </td>
       <td data-title="'M Fair Val'" sortable="'MorningstarFairValueEstimate'">
@@ -67,10 +77,14 @@
       <td data-title="'M Sell'" sortable="'MorningstarConsiderSell'">
         {{ stock.MorningstarConsiderSell }}
       </td>
-      <td data-title="'M Moat'" sortable="'MorningstarEconomicMoat'">
+      <td data-title="'M Moat'" sortable="'MorningstarEconomicMoat'" ng-class="
+      {'Wide':'cell_two','None':'cell_four' }[stock.MorningstarEconomicMoat]
+      ">
         {{ stock.MorningstarEconomicMoat }}
       </td>
-      <td data-title="'M Stewartship'" sortable="'MorningstarStewardshipRating'">
+      <td data-title="'M Stewartship'" sortable="'MorningstarStewardshipRating'" ng-class="
+      {'Exemplary':'cell_two','Poor':'cell_four' }[stock.MorningstarStewardshipRating]
+      ">
         {{ stock.MorningstarStewardshipRating }}
       </td>
       <td data-title="'Louis Risk'" sortable="'NavellierRisk'">
@@ -88,7 +102,7 @@
       <td data-title="'Avg Daily Vol'" sortable="'AverageDailyVol'">
         {{ stock.AverageDailyVol }}
       </td>
-      <td data-title="'52 Week Range'" sortable="'FiftyTwoWeekRange'">
+      <td data-title="'52 Week Range'" style="min-width:100px;" sortable="'FiftyTwoWeekRange'">
         {{ stock.FiftyTwoWeekRange }}
       </td>
       <td data-title="'Short Ratio'" sortable="'ShortRatio'">
@@ -106,37 +120,59 @@
       <td data-title="'PE Ratio'" sortable="'PERatio'">
         {{ stock.PERatio }}
       </td>
-      <td data-title="'Stock Grade'" sortable="'NavellierTotalGrade'">
+      <td data-title="'Stock Grade'" sortable="'NavellierTotalGrade'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierTotalGrade]
+      ">
         {{ stock.NavellierTotalGrade }}
       </td>
-      <td data-title="'Qnt. Grade'" sortable="'NavellierQuantitativeGrade'">
+      <td data-title="'Qnt. Grade'" sortable="'NavellierQuantitativeGrade'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierQuantitativeGrade]
+      ">
         {{ stock.NavellierQuantitativeGrade }}
       </td>
-      <td data-title="'Fund. Grade'" sortable="'NavellierFundamentalGrade'">
+      <td data-title="'Fund. Grade'" sortable="'NavellierFundamentalGrade'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierFundamentalGrade]
+      ">
         {{ stock.NavellierFundamentalGrade }}
       </td>
-      <td data-title="'Sales Grow'" sortable="'NavellierSalesGrowth'">
+      <td data-title="'Sales Grow'" sortable="'NavellierSalesGrowth'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierSalesGrowth]
+      ">
         {{ stock.NavellierSalesGrowth }}
       </td>
-      <td data-title="'Oper. Marg Grow'" sortable="'NavellierOperatingMarginGrowth'">
+      <td data-title="'Oper. Marg Grow'" sortable="'NavellierOperatingMarginGrowth'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierOperatingMarginGrowth]
+      ">
         {{ stock.NavellierOperatingMarginGrowth }}
       </td>
-      <td data-title="'Earn Grow'" sortable="'NavellierEarningsGrowth'">
+      <td data-title="'Earn Grow'" sortable="'NavellierEarningsGrowth'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierEarningsGrowth]
+      ">
         {{ stock.NavellierEarningsGrowth }}
       </td>
-      <td data-title="'Earn Mo'" sortable="'NavellierEarningsMomentum'">
+      <td data-title="'Earn Mo'" sortable="'NavellierEarningsMomentum'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierEarningsMomentum]
+      ">
         {{ stock.NavellierEarningsMomentum }}
       </td>
-      <td data-title="'Earn Sur'" sortable="'NavellierEarningsSurprises'">
+      <td data-title="'Earn Sur'" sortable="'NavellierEarningsSurprises'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierEarningsSurprises]
+      ">
         {{ stock.NavellierEarningsSurprises }}
       </td>
-      <td data-title="'Earn Rev'" sortable="'NavellierAnalystEarningsRevisions'">
+      <td data-title="'Earn Rev'" sortable="'NavellierAnalystEarningsRevisions'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierAnalystEarningsRevisions]
+      ">
         {{ stock.NavellierAnalystEarningsRevisions }}
       </td>
-      <td data-title="'Cash Flow'" sortable="'NavellierCashFlow'">
+      <td data-title="'Cash Flow'" sortable="'NavellierCashFlow'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierCashFlow]
+      ">
         {{ stock.NavellierCashFlow }}
       </td>
-      <td data-title="'Rtn On Eq'" sortable="'NavellierReturnOnEquity'">
+      <td data-title="'Rtn On Eq'" sortable="'NavellierReturnOnEquity'" ng-class="
+      {'A':'cell_one','B':'cell_two','D':'cell_four','F':'cell_five' }[stock.NavellierReturnOnEquity]
+      ">
         {{ stock.NavellierReturnOnEquity }}
       </td>
       <td data-title="'Scr'" sortable="'Scr'">
@@ -172,7 +208,7 @@
       <td data-title="'Spon Rating'" sortable="'SponRating'">
         {{ stock.SponRating }}
       </td>
-      <td data-title="'Description'" style="min-width:600px;" sortable="'CompDesc'">
+      <td data-title="'Description'" style="min-width:800px;" sortable="'CompDesc'">
         {{ stock.CompDesc }}
       </td>
     </tr>

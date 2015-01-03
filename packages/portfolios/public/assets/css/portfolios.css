@@ -4,3 +4,21 @@ h1 {
 ul.portfolios li:not(:last-child) {
 	border-bottom: 1px solid #ccc
 }
+.cell_one {
+	background-color: #00FF00
+}
+.cell_two {
+	background-color: #2EB82E
+}
+.cell_three {
+	background-color: #FFFFFF
+}
+.cell_four {
+	background-color: #FFADFF
+}
+.cell_five {
+	background-color: #FF00FF
+}
+.cell_six {
+	background-color: #FF0000
+}
