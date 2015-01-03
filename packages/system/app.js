@@ -118,6 +118,13 @@ var job = new CronJob({
                     NoOfBrokers = NoOfBrokers.replace(/.*No\. of Brokers:<\/td><td class="yfnc_tabledata1">/, '');
                     NoOfBrokers = NoOfBrokers.replace(/<\/td>.*/, '');
 
+                    if (NoOfBrokers.match(/N\/A/)) {
+                      NoOfBrokers = null;
+                    }
+                    if (MeanRecommendation.match(/N\/A/)) {
+                      MeanRecommendation = null;
+                    }
+
                     portfolios[i].stocks[x].MeanRecommendation = MeanRecommendation;
                     portfolios[i].stocks[x].NoOfBrokers = NoOfBrokers;
 
@@ -448,6 +455,10 @@ var job = new CronJob({
                             MorningstarUncertainty = MorningstarUncertainty.replace(/.*<td>/,'');
                             MorningstarUncertainty = MorningstarUncertainty.replace(/<\/td>.*/,'');
 
+                            if (MorningstarFairValueEstimate.match(/&mdash;<\/td>/)) {
+                              MorningstarFairValueEstimate = null;
+                            }
+
                             portfolios[i].stocks[x].MorningstarFairValueEstimate = MorningstarFairValueEstimate;
                             portfolios[i].stocks[x].MorningstarUncertainty = MorningstarUncertainty;
 
@@ -465,6 +476,13 @@ var job = new CronJob({
                             MorningstarConsiderSell = MorningstarConsiderSell.replace(/<span>.*/,'');
                             MorningstarEconomicMoat = MorningstarEconomicMoat.replace(/.*<td>/,'');
                             MorningstarEconomicMoat = MorningstarEconomicMoat.replace(/<\/td>.*/,'');
+
+                            if (MorningstarConsiderBuy.match(/&mdash;<\/td>/)) {
+                              MorningstarConsiderBuy = null;
+                            }
+                            if (MorningstarConsiderSell.match(/&mdash;<\/td>/)) {
+                              MorningstarConsiderSell = null;
+                            }
 
                             portfolios[i].stocks[x].MorningstarConsiderBuy = MorningstarConsiderBuy;
                             portfolios[i].stocks[x].MorningstarConsiderSell = MorningstarConsiderSell;
