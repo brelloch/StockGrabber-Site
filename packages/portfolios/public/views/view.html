@@ -1,0 +1,180 @@
+<section data-ng-controller="PortfoliosController" data-ng-init="findOne()" style="width: 100%;">
+  <span>{{portfolio.created | date:'medium'}}</span> /
+  <span>{{portfolio.user.name}}</span>
+  <h2>{{portfolio.title}}</h2>
+  <div data-ng-if="hasAuthorization(portfolio)">
+    <a class="btn" href="/#!/portfolios/{{portfolio._id}}/edit">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn" data-ng-click="remove(portfolio);">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+
+  <a ng-show="showHidden === true" ng-click="showHidden = false;">Hide Hidden Stocks</a>
+  <a ng-show="showHidden === false" ng-click="showHidden = true;">Show Hidden Stocks</a>
+
+  <table ng-table="tableParams" class="table">
+    <tr ng-repeat="stock in $data" ng-hide="stock.hidden === true && showHidden === false">
+      <td data-title="''">
+        <a ng-hide="stock.hidden !== false" ng-click="hideStock(stock);">hide</a>
+        <a ng-hide="stock.hidden === false" ng-click="hideStock(stock);">show</a>
+      </td>
+      <td data-title="'Top'" sortable="'Top'">
+        {{ stock.Top }}
+      </td>
+      <!--
+      <td data-title="'5 Yr'" sortable="'FiveYear'">
+      </td>
+    -->
+      <td data-title="'Symbol'" sortable="'Symbol'">
+        {{ stock.Symbol }}
+      </td>
+      <td data-title="'Company Name'" sortable="'CompanyName'">
+        {{ stock.CompanyName }}
+      </td>
+      <td data-title="'the street'" sortable="'TheStreetRating'">
+        {{ stock.TheStreetRating }}
+      </td>
+      <td data-title="'rating'" sortable="'MeanRecommendation'">
+        {{ stock.MeanRecommendation }}
+      </td>
+      <td data-title="'# Brk'" sortable="'NoOfBrokers'">
+        {{ stock.NoOfBrokers }}
+      </td>
+      <!--
+      <td data-title="'S&P Rating'" sortable="'SPRating'">
+      </td>
+    -->
+      <td data-title="'Zacks'" sortable="'ZacksRating'">
+        {{ stock.ZacksRating }}
+      </td>
+      <td data-title="'Stock Selector'" sortable="'StockSelectorRating'">
+        {{ stock.StockSelectorRating }}
+      </td>
+      <td data-title="'M Rating'" sortable="'MorningstarRating'">
+        {{ stock.MorningstarRating }}
+      </td>
+      <td data-title="'M Risk'" sortable="'MorningstarUncertainty'">
+        {{ stock.MorningstarUncertainty }}
+      </td>
+      <td data-title="'M Fair Val'" sortable="'MorningstarFairValueEstimate'">
+        {{ stock.MorningstarFairValueEstimate }}
+      </td>
+      <td data-title="'M Buy'" sortable="'MorningstarConsiderBuy'">
+        {{ stock.MorningstarConsiderBuy }}
+      </td>
+      <td data-title="'M Sell'" sortable="'MorningstarConsiderSell'">
+        {{ stock.MorningstarConsiderSell }}
+      </td>
+      <td data-title="'M Moat'" sortable="'MorningstarEconomicMoat'">
+        {{ stock.MorningstarEconomicMoat }}
+      </td>
+      <td data-title="'M Stewartship'" sortable="'MorningstarStewardshipRating'">
+        {{ stock.MorningstarStewardshipRating }}
+      </td>
+      <td data-title="'Louis Risk'" sortable="'NavellierRisk'">
+        {{ stock.NavellierRisk }}
+      </td>
+      <!--
+      <td data-title="'Louis Buy Below'" sortable="'LouisBuyBelow'">
+      </td>
+      <td data-title="'% Below Target'" sortable="'PercentBelowTarget'">
+      </td>
+    -->
+      <td data-title="'Last Price'" sortable="'LastPrice'">
+        {{ stock.LastPrice }}
+      </td>
+      <td data-title="'Avg Daily Vol'" sortable="'AverageDailyVol'">
+        {{ stock.AverageDailyVol }}
+      </td>
+      <td data-title="'52 Week Range'" sortable="'FiftyTwoWeekRange'">
+        {{ stock.FiftyTwoWeekRange }}
+      </td>
+      <td data-title="'Short Ratio'" sortable="'ShortRatio'">
+        {{ stock.ShortRatio }}
+      </td>
+      <td data-title="'1yr Target Price'" sortable="'OneYrTargetPrice'">
+        {{ stock.OneYrTargetPrice }}
+      </td>
+      <td data-title="'Dividend Pay Date'" sortable="'DividendPayDate'">
+        {{ stock.DividendPayDate }}
+      </td>
+      <td data-title="'Dividend Yield'" sortable="'DividendYield'">
+        {{ stock.DividendYield }}
+      </td>
+      <td data-title="'PE Ratio'" sortable="'PERatio'">
+        {{ stock.PERatio }}
+      </td>
+      <td data-title="'Stock Grade'" sortable="'NavellierTotalGrade'">
+        {{ stock.NavellierTotalGrade }}
+      </td>
+      <td data-title="'Qnt. Grade'" sortable="'NavellierQuantitativeGrade'">
+        {{ stock.NavellierQuantitativeGrade }}
+      </td>
+      <td data-title="'Fund. Grade'" sortable="'NavellierFundamentalGrade'">
+        {{ stock.NavellierFundamentalGrade }}
+      </td>
+      <td data-title="'Sales Grow'" sortable="'NavellierSalesGrowth'">
+        {{ stock.NavellierSalesGrowth }}
+      </td>
+      <td data-title="'Oper. Marg Grow'" sortable="'NavellierOperatingMarginGrowth'">
+        {{ stock.NavellierOperatingMarginGrowth }}
+      </td>
+      <td data-title="'Earn Grow'" sortable="'NavellierEarningsGrowth'">
+        {{ stock.NavellierEarningsGrowth }}
+      </td>
+      <td data-title="'Earn Mo'" sortable="'NavellierEarningsMomentum'">
+        {{ stock.NavellierEarningsMomentum }}
+      </td>
+      <td data-title="'Earn Sur'" sortable="'NavellierEarningsSurprises'">
+        {{ stock.NavellierEarningsSurprises }}
+      </td>
+      <td data-title="'Earn Rev'" sortable="'NavellierAnalystEarningsRevisions'">
+        {{ stock.NavellierAnalystEarningsRevisions }}
+      </td>
+      <td data-title="'Cash Flow'" sortable="'NavellierCashFlow'">
+        {{ stock.NavellierCashFlow }}
+      </td>
+      <td data-title="'Rtn On Eq'" sortable="'NavellierReturnOnEquity'">
+        {{ stock.NavellierReturnOnEquity }}
+      </td>
+      <td data-title="'Scr'" sortable="'Scr'">
+        {{ stock.Scr }}
+      </td>
+      <td data-title="'Perf Mnth &gt;5% &lt;-5%'" sortable="'PerfMnth'">
+        {{ stock.PerfMnth }}
+      </td>
+      <td data-title="'Perf &gt;60% &lt;30%'" sortable="'Perf'">
+        {{ stock.Perf }}
+      </td>
+      <td data-title="'IBD Rating'" sortable="'IBDRating'">
+        {{ stock.IBDRating }}
+      </td>
+      <td data-title="'Smart Select Composite Rating'" sortable="'CompRating'">
+        {{ stock.CompRating }}
+      </td>
+      <td data-title="'EPS Rating'" sortable="'EPSRating'">
+        {{ stock.EPSRating }}
+      </td>
+      <td data-title="'RS Rating'" sortable="'RSRating'">
+        {{ stock.RSRating }}
+      </td>
+      <td data-title="'Ind Group Relative Strength'" sortable="'IndGrpRelativeStrength'">
+        {{ stock.IndGrpRelativeStrength }}
+      </td>
+      <td data-title="'SMR Rating'" sortable="'SMRRating'">
+        {{ stock.SMRRating }}
+      </td>
+      <td data-title="'Acc/Dis'" sortable="'AccDisRating'">
+        {{ stock.AccDisRating}}
+      </td>
+      <td data-title="'Spon Rating'" sortable="'SponRating'">
+        {{ stock.SponRating }}
+      </td>
+      <td data-title="'Description'" style="min-width:600px;" sortable="'CompDesc'">
+        {{ stock.CompDesc }}
+      </td>
+    </tr>
+  </table>
+</section>
