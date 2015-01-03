@@ -14,7 +14,7 @@
   <a ng-show="showHidden === true" ng-click="showHidden = false;">Hide Hidden Stocks</a>
   <a ng-show="showHidden === false" ng-click="showHidden = true;">Show Hidden Stocks</a>
 
-  <table ng-table="tableParams" class="table">
+  <table ng-table="tableParams" class="table" style="transform: scale(.55); transform-origin: 0% 0%;">
     <tr ng-repeat="stock in $data" ng-hide="stock.hidden === true && showHidden === false">
       <td data-title="''">
         <a ng-hide="stock.hidden !== false" ng-click="hideStock(stock);">hide</a>
