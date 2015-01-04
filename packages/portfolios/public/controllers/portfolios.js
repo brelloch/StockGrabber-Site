@@ -284,6 +284,13 @@ angular.module('mean.portfolios').controller('PortfoliosController', ['$scope', 
           if (isNaN(portfolio.stocks[i].Scr)) portfolio.stocks[i].Scr = 0;
           if (isNaN(portfolio.stocks[i].IBDRating)) portfolio.stocks[i].IBDRating = 0;
 
+          if (portfolio.stocks[i].OneYrTargetPrice === null) {
+            portfolio.stocks[i].PercentBelow = '';
+          } else {
+            portfolio.stocks[i].PercentBelow = (((portfolio.stocks[i].LastPrice-portfolio.stocks[i].OneYrTargetPrice)/portfolio.stocks[i].OneYrTargetPrice));
+            portfolio.stocks[i].PercentBelow = (portfolio.stocks[i].PercentBelow * -100).toFixed(2);
+            portfolio.stocks[i].PercentBelow = parseFloat(portfolio.stocks[i].PercentBelow);
+          }
           portfolio.stocks[i].FiveYear = 0;
           portfolio.stocks[i].SPRating = 0;
 
